@@ -22,11 +22,12 @@ module.exports = {
       },
     },
   ],
+
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './tsconfig.json',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
     // tsconfigRootDir: __dirname,
   },
   plugins: ['@typescript-eslint', 'react', 'prettier'],
@@ -42,6 +43,7 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     '@typescript-eslint/no-non-null-assertion': 'off',
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
