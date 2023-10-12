@@ -37,9 +37,9 @@ module.exports = {
       'ignorePackages',
       {
         js: 'never',
-        ' jsx': 'never',
+        jsx: 'never',
         ts: 'never',
-        ' tsx': 'never',
+        tsx: 'never',
       },
     ],
     '@typescript-eslint/no-non-null-assertion': 'off',
