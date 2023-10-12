@@ -32,5 +32,17 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 0,
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        ' jsx': 'never',
+        ts: 'never',
+        ' tsx': 'never',
+      },
+    ],
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 };
