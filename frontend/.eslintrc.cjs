@@ -44,7 +44,15 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: false,
+        optionalDependencies: false,
+        peerDependencies: false,
+      },
+    ],
+    'import/no-cycle': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
