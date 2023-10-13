@@ -18,7 +18,7 @@ export default function ErrorPage() {
         </i>
       </p>
       <button
-        className="mt-1 bg-violet-800 px-6 py-1 text-lg font-bold text-white hover:bg-violet-950"
+        className="mt-1 bg-healHavenBrand600 px-6 py-1 text-lg font-bold text-white hover:bg-violet-950"
         type="button"
         onClick={() => navigate(-1)}
       >
