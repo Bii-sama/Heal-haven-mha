@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth font-inter;
+  }
+
+  body {
+    @apply text-healHavenGray500;
+  }
+}
+
+@layer utilities {
+  .healHavenContainer {
+    @apply mx-auto max-w-7xl px-4 lg:px-8;
+  }
+}
