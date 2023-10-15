@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
-import Logo from '../../assets/healHavenLogo.svg';
+import Logo from '@/assets/logo-header.svg';
 import HeaderMenu from './header-menu';
 import MenuButton from './menu-button';
 
@@ -10,26 +10,41 @@ export const links = [
     name: 'Home',
     path: '/',
   },
-  {
-    name: 'About us',
-    path: '/about',
-  },
+  // {
+  //   name: 'About us',
+  //   path: '/about',
+  // },
   {
     name: ' Find a Therapist',
     path: '/therapists',
   },
-  {
-    name: 'For Practitioners',
-    path: '/practitioners',
-  },
-  {
-    name: 'Contact us',
-    path: '/contact-us',
-  },
+  // {
+  //   name: 'For Practitioners',
+  //   path: '/practitioners',
+  // },
+  // {
+  //   name: 'Contact us',
+  //   path: '/contact-us',
+  // },
 ];
 
 function Index() {
   const [openMenu, setOpenMenu] = useState(false);
+  const { pathname } = useLocation();
+  if (pathname === '/find-therapist') {
+    return (
+      <header>
+        <nav className="healHavenContainer relative z-10 flex items-center justify-between py-5  md:py-6">
+          <Link to="/" className="flex items-center gap-[0.375rem]">
+            <img src={Logo} alt="logo" />
+            <span className="text-2xl font-bold text-healHavenGray800">
+              Heal Haven
+            </span>
+          </Link>
+        </nav>
+      </header>
+    );
+  }
   return (
     <header>
       <nav className="healHavenContainer flex items-center justify-between py-5  md:py-6">
@@ -38,30 +53,30 @@ function Index() {
             <span>
               <img src={Logo} alt="heal haven logo" />
             </span>
-            <span className="text-healHavenGray800 text-2xl font-bold">
+            <span className="text-2xl font-bold text-healHavenGray800">
               Heal Haven
             </span>
           </Link>
+          <ul className="hidden items-center gap-8 lg:flex">
+            {links.map((link) => (
+              <li key={`sesktop-${link.name}`}>
+                <NavLink
+                  to={link.path}
+                  className={({ isActive, isPending }) =>
+                    // eslint-disable-next-line no-nested-ternary
+                    isPending
+                      ? 'font-semibold text-gray-600'
+                      : isActive
+                      ? 'font-semibold text-healHavenBrand600'
+                      : 'text-base font-semibold'
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul className="hidden items-center gap-8 lg:flex">
-          {links.map((link) => (
-            <li key={`sesktop-${link.name}`}>
-              <NavLink
-                to={link.path}
-                className={({ isActive, isPending }) =>
-                  // eslint-disable-next-line no-nested-ternary
-                  isPending
-                    ? 'font-semibold text-gray-600'
-                    : isActive
-                    ? 'font-semibold text-healHavenBrand600'
-                    : 'text-base font-semibold'
-                }
-              >
-                {link.name}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             to="log-in"
@@ -71,7 +86,7 @@ function Index() {
           </Link>
           <Link
             to="sign-up"
-            className="hover:bg-healHavenBrand900 flex items-center justify-center rounded-lg bg-healHavenBrand600 px-[1.125rem] py-[0.625rem] text-white shadow"
+            className="flex items-center justify-center rounded-lg bg-healHavenBrand600 px-[1.125rem] py-[0.625rem] text-white shadow hover:bg-healHavenBrand900"
           >
             Sign up
           </Link>

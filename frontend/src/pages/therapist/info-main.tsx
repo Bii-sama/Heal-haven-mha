@@ -1,4 +1,4 @@
-import ScheduleCallBtn from '@/components/buttons/schedule-call-btn';
+import ScheduleCallBtn from '@/components/button';
 
 function InfoMain() {
   const resources = [
@@ -26,7 +26,7 @@ function InfoMain() {
     <>
       <div className="flex h-fit flex-col gap-5 ">
         <div className="bg-healHavenGray100 px-6 py-3">
-          <h2 className="font-semibold text-healHavenGray500">
+          <h2 className="font-semibold text-healHavenGray700">
             My Roots and Journeys
           </h2>
         </div>
@@ -40,7 +40,7 @@ function InfoMain() {
 
       <div className="flex flex-col gap-5 ">
         <div className="bg-healHavenGray100 px-6 py-3">
-          <h2 className="font-semibold text-healHavenGray500">
+          <h2 className="font-semibold text-healHavenGray700">
             My Therapeutic Approach
           </h2>
         </div>
@@ -55,7 +55,7 @@ function InfoMain() {
 
       <div className="flex flex-col gap-5 ">
         <div className="bg-healHavenGray100 px-6 py-3">
-          <h2 className="font-semibold text-healHavenGray500">Education</h2>
+          <h2 className="font-semibold text-healHavenGray700">Education</h2>
         </div>
         <ul className="flex flex-col gap-4 px-6 text-healHavenGray500 lg:gap-6">
           <li className="flex flex-col gap-[2px] ">
@@ -75,7 +75,7 @@ function InfoMain() {
 
       <div className="flex flex-col gap-5 ">
         <div className="bg-healHavenGray100 px-6 py-3">
-          <h2 className="font-semibold text-healHavenGray500">
+          <h2 className="font-semibold text-healHavenGray700">
             Cultural Competency
           </h2>
         </div>
@@ -104,7 +104,7 @@ function InfoMain() {
 
       <div className="flex flex-col gap-5">
         <div className="bg-healHavenGray100 px-6 py-3">
-          <h2 className="font-semibold text-healHavenGray500">Fee Structure</h2>
+          <h2 className="font-semibold text-healHavenGray700">Fee Structure</h2>
         </div>
         <p className="px-6">
           I offer a FREE 30-minute consultation to new patients.
@@ -125,7 +125,7 @@ function InfoMain() {
       </div>
       <div className="flex flex-col gap-5">
         <div className="bg-healHavenGray100 px-6 py-3">
-          <h2 className="font-semibold text-healHavenGray500">Fee Structure</h2>
+          <h2 className="font-semibold text-healHavenGray700">Fee Structure</h2>
         </div>
         <blockquote className="px-6">
           “Dr. Patel&apos;s understanding of my South Asian background made me
@@ -148,11 +148,11 @@ function InfoMain() {
       </div>
       <div className="flex flex-col gap-5">
         <div className="bg-healHavenGray100 px-6 py-3">
-          <h2 className="font-semibold text-healHavenGray500">
+          <h2 className="font-semibold text-healHavenGray700">
             Some resources I love
           </h2>
         </div>
-        <ul>
+        <ul className="flex flex-col gap-1">
           {resources.map(({ title, type, author, content }) => (
             <li key={title} className="list-inside list-disc px-6 ">
               <span className="font-semibold ">{type}:</span>{' '}
@@ -173,7 +173,7 @@ function InfoMain() {
             Book a consultation to see if we’re a good fit.
           </p>
         </div>
-        <ScheduleCallBtn />
+        <ScheduleCallBtn text="Schedule a call" />
       </div>
     </>
   );

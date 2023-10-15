@@ -12,15 +12,15 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: ['.eslintrc.{js,cjs}'],
-      parserOptions: {
-        sourceType: 'script',
-      },
-    },
+    // {
+    //   env: {
+    //     node: true,
+    //   },
+    //   files: ['.eslintrc.{js,cjs}'],
+    //   parserOptions: {
+    //     sourceType: 'script',
+    //   },
+    // },
   ],
 
   parser: '@typescript-eslint/parser',
@@ -30,10 +30,23 @@ module.exports = {
     project: ['./tsconfig.json', './tsconfig.node.json'],
     // tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint', 'react', 'prettier'],
-  ignorePatterns: ['tailwind.config.js'],
+  plugins: ['import', '@typescript-eslint', 'react', 'prettier'],
+  ignorePatterns: ['tailwind.config.js', '.eslintrc.cjs'],
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      alias: {
+        map: [['@', './src']],
+      },
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
+  },
+
   rules: {
-    'react/react-in-jsx-scope': 0,
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -44,6 +57,7 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'react/react-in-jsx-scope': 0,
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/no-cycle': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',

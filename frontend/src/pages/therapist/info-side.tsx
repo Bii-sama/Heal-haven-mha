@@ -2,7 +2,7 @@ import { Dribbble, Linkedin, Twitter } from 'react-feather';
 
 function InfoSide() {
   return (
-    <ul className="bg-healHavenGray50 text-healHavenGray400  flex flex-col gap-4 p-6 md:flex-row md:justify-between  lg:col-start-1 lg:row-start-1 lg:row-end-3 lg:flex-col lg:justify-start">
+    <ul className="flex flex-col  gap-4 bg-healHavenGray50 p-6 text-healHavenGray400 md:flex-row md:justify-between  lg:col-start-1 lg:row-start-1 lg:row-end-3 lg:flex-col lg:justify-start">
       <li className="flex flex-col gap-[2px] text-healHavenGray500">
         <h2 className="font-semibold ">Gender</h2>
         <p className="">Female</p>

@@ -1,11 +1,12 @@
 import { ArrowLeft } from 'react-feather';
 
+import ScheduleCallBtn from '@/components/button';
+
 import bgMobile from '@/assets/mobile-therapist-bg.png';
 import bgDesktop from '@/assets/desktop-therapist-bg.png';
 
 import india from '@/assets/india.png';
 import newZealand from '../../assets/NZ@2x.png';
-import ScheduleCallBtn from '@/components/buttons/schedule-call-btn';
 
 function Hero() {
   return (
@@ -48,7 +49,7 @@ function Hero() {
             </div>
           </div>
 
-          <ScheduleCallBtn />
+          <ScheduleCallBtn text="Schedule a call" />
         </div>
       </div>
       <picture className="absolute inset-0 h-full w-full ">

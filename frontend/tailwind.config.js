@@ -6,6 +6,9 @@ export default {
     extend: {
       colors: {
         healHavenBrand100: '#F4EBFF',
+        healHavenBrand200: '#E9D7FE',
+        healHavenBrand300: '#D6BBFB',
+        healHavenBrand400: '#B692F6',
         healHavenBrand500: '#9E77ED',
         healHavenBrand600: '#7F56D9',
         healHavenBrand700: '#6941C6',

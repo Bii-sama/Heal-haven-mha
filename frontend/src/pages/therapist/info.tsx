@@ -11,8 +11,8 @@ function Info() {
           <InfoSide />
         </div>
         <div className="flex flex-col gap-6 lg:flex-[3.5] lg:gap-8">
-          <div className="bg-healHavenBrand100 flex h-fit flex-col items-center p-6 ">
-            <blockquote className="text-healHavenBrand500 max-w-[46.5rem] text-center italic">
+          <div className="flex h-fit flex-col items-center bg-healHavenBrand100 p-6 ">
+            <blockquote className="max-w-[46.5rem] text-center italic text-healHavenBrand500">
               “Every individual is a tapestry of their experiences, traditions,
               and cultures. I&apos;m committed to continuous learning, always
               seeking to understand the unique cultural threads that make you,
