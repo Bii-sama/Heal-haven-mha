@@ -96,7 +96,7 @@ function MatchLayout() {
           </div>
         </div>
         <footer>
-          <div className="flex items-center  justify-between px-4  py-12 pb-6 md:pl-28 md:pr-8 lg:pb-12">
+          <div className="flex items-center  justify-between px-4  py-12 pb-7 md:pl-28 md:pr-8 lg:pb-12">
             <p className="text-sm">
               &copy; {new Date().getFullYear()} Heal Haven.
             </p>
