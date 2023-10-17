@@ -31,7 +31,7 @@ export const links = [
 function Index() {
   const [openMenu, setOpenMenu] = useState(false);
   const { pathname } = useLocation();
-  if (pathname === '/find-therapist') {
+  if (pathname.includes('find-therapist')) {
     return (
       <header>
         <nav className="healHavenContainer relative z-10 flex items-center justify-between py-5  md:py-6">

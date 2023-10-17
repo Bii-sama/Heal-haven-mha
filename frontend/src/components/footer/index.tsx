@@ -5,7 +5,7 @@ import { links } from '../header/header';
 
 function Footer() {
   const { pathname } = useLocation();
-  if (pathname === '/find-therapist') {
+  if (pathname.includes('find-therapist') || pathname.includes('match')) {
     return (
       <footer>
         <div className="healHavenContainer flex  items-center justify-between py-12 pb-6 lg:pb-12">

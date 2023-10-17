@@ -16,6 +16,7 @@ export default {
         healHavenBrand900: '#42307D',
         healHavenGray50: '#F9FAFB',
         healHavenGray100: '#F2F4F7',
+        healHavenGray300: '#D0D5DD',
         healHavenGray400: '#98A2B3',
         healHavenGray500: '#667085',
         healHavenGray700: '#344054',

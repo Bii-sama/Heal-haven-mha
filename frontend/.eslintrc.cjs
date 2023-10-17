@@ -57,7 +57,12 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'react/require-default-props': [
+      'error',
+      { ignoreFunctionalComponents: true }, // Ignore functional components (TypeScript)
+    ],
     'react/react-in-jsx-scope': 0,
+    ' react/jsx-props-no-spreading': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/no-cycle': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
