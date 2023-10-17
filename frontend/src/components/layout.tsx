@@ -4,7 +4,7 @@ import Footer from './footer';
 
 function Layout() {
   return (
-    <div className="grid h-screen grid-cols-1 grid-rows-[auto_1fr_auto]">
+    <div className="relative grid h-screen grid-cols-1 grid-rows-[auto_1fr_auto] overflow-x-hidden">
       <Header />
       <main>
         <Outlet />
