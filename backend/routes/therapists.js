@@ -1,5 +1,5 @@
 const express = require('express')
-const {createTherapist, getTherapists, getATherapist} = require('../controllers/therapistController')
+const {createTherapist, getTherapists, getATherapist, updateTherapist, deleteTherapist} = require('../controllers/therapistController')
 
 const router = express.Router()
 
@@ -13,15 +13,11 @@ router.post('/', createTherapist)
 router.get('/:id', getATherapist)
 
 //Delete a single therepist
-router.delete('/:id', (req, res) => {
-    res.json({mssg:'Delete therapist information'})
-})
+router.delete('/:id', deleteTherapist)
 
 //Update therapist information
 
-router.patch('/:id', (req, res) => {
-    res.json({mssg:'Update therapist information'})
-})
+router.patch('/:id', updateTherapist)
 
 
 module.exports = router
