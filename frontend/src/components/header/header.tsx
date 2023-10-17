@@ -16,7 +16,7 @@ export const links = [
   // },
   {
     name: ' Find a Therapist',
-    path: '/therapists',
+    path: '/find-therapist',
   },
   // {
   //   name: 'For Practitioners',

@@ -23,7 +23,7 @@ function Landing() {
               to="find-therapist"
               className="flex  w-full items-center justify-center rounded-lg bg-healHavenBrand600 px-5 py-3 font-semibold text-white hover:bg-healHavenBrand900"
             >
-              Find a therapists
+              Find a therapist
             </Link>
           </div>
         </div>
