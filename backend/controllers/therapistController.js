@@ -59,22 +59,49 @@ const updateTherapist = async (req, res) =>{
     if(!mongoose.Types.ObjectId.isValid(id)){
         res.status(404).json("This therapist does not exist")
     }
-try {
-    const therapist = await Therapist.updateOne(id, {fullName, title, gender, religion, languages, experiences, 
-        quote, journey, approach, education, culturalCompetency, feeStructure, reviews})
 
-        res.status(200).json(therapist)
-} catch (error) {
-    res.status(400).json({error: error.message})
-}
+    const therapist = await Therapist.findOneAndUpdate({_id:id}, {...req.body})
+
+
+    if(!therapist){
+        return res.status(404).json({
+             error: "This therapist does not exist"
+         })
+     }
+    res.status(200).json(therapist)
+
     
 }
 
 
 //Delete Therapist
 
+const deleteTherapist = async (req, res) =>{
+    const { id } = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        res.status(404).json("This therapist does not exist")
+    }
+
+    const therapist = await Therapist.findOneAndDelete({_id:id})
+
+    if(!therapist){
+        return res.status(400).json({
+             error: "This therapist does not exist"
+         })
+     }
+
+     res.status(200).json({mssg: "Therapist deleted"})
+    
+}
+
+
+
+
 module.exports = {
     createTherapist,
     getTherapists,
     getATherapist,
+    updateTherapist,
+    deleteTherapist
 }
