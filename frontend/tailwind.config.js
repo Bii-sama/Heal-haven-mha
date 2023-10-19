@@ -5,6 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        healHavenBrand50: '#F9F5FF',
         healHavenBrand100: '#F4EBFF',
         healHavenBrand200: '#E9D7FE',
         healHavenBrand300: '#D6BBFB',
@@ -22,6 +23,8 @@ export default {
         healHavenGray700: '#344054',
         healHavenGray800: '#1D2939',
         healHavenGray900: '#101828',
+        healHavenSuccess100: '#D1FADF',
+        healHavenSuccess500: '#12B76A',
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
