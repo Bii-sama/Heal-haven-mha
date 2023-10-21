@@ -6,7 +6,7 @@ function Login() {
   return (
     <>
       <h1 className="text-[2.375rem] font-semibold text-healHavenGray900">
-        Sign Up
+        Sign In
       </h1>
       <form className="flex  w-full flex-col gap-5">
         <div className="text-healHavenGray700">
