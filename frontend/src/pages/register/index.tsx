@@ -2,7 +2,7 @@ import Logo from '@/assets/logo-header.svg';
 import { Mail } from 'react-feather';
 import { Link, useLocation } from 'react-router-dom';
 import CreateAccount from './create-account';
-import Login from './Login';
+import Login from './login';
 
 function Register() {
   const { pathname } = useLocation();
@@ -25,7 +25,7 @@ function Register() {
   };
 
   const getPath = pathname.split('/')[2];
-  console.log(pathname, getPath);
+
   return (
     <section className="md:flex">
       <div className="grid h-screen grid-rows-[auto_1fr_auto] md:flex-1">
@@ -57,8 +57,8 @@ function Register() {
       <div className="hidden h-screen flex-col items-center justify-center gap-8 bg-healHavenGray50 md:flex md:flex-1 md:pt-[18.5rem]">
         <blockquote className="max-w-md text-center text-3xl text-healHavenGray700">
           Heal Haven helped me find a therapist who truly understands my
-          cultural background. It's been a game-changer for my mental health
-          journey.
+          cultural background. It&apos;s been a game-changer for my mental
+          health journey.
         </blockquote>
         <div className="flex flex-col items-center gap-4">
           <img

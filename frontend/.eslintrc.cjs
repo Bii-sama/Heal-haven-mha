@@ -47,24 +47,23 @@ module.exports = {
   },
 
   rules: {
-    rules: {
-      'jsx-a11y/label-has-associated-control': [
-        'error',
-        {
-          required: {
-            some: ['nesting', 'id'],
-          },
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        required: {
+          some: ['nesting', 'id'],
         },
-      ],
-      'jsx-a11y/label-has-for': [
-        'error',
-        {
-          required: {
-            some: ['nesting', 'id'],
-          },
+      },
+    ],
+    'jsx-a11y/label-has-for': [
+      'error',
+      {
+        required: {
+          some: ['nesting', 'id'],
         },
-      ],
-    },
+      },
+    ],
+
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -80,6 +79,7 @@ module.exports = {
       { ignoreFunctionalComponents: true }, // Ignore functional components (TypeScript)
     ],
     'react/react-in-jsx-scope': 0,
+    'react/button-has-type': 0,
     ' react/jsx-props-no-spreading': 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/no-cycle': 'off',

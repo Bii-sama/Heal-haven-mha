@@ -28,11 +28,9 @@ function ReligionFormComponent() {
   const navigate = useNavigate();
 
   const selectedReligion = watch('religion');
-  console.log(selectedReligion);
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     if (!data.religion) return;
-    console.log(data);
     navigate('/match/challenges');
   };
 

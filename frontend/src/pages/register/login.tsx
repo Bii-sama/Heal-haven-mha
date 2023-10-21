@@ -2,7 +2,7 @@ import Button from '@/components/button/button';
 import Google from '@/components/icons/google';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+function Login() {
   return (
     <>
       <h1 className="text-[2.375rem] font-semibold text-healHavenGray900">
@@ -44,13 +44,13 @@ const Login = () => {
         </div>
       </form>
       <div className="flex items-center justify-center gap-1">
-        <p className="text-sm">Dont't have an account?</p>
+        <p className="text-sm">Dontapos;t have an account?</p>
         <Link className="text-sm text-healHavenBrand700" to="/auth/register">
           Create Account
         </Link>
       </div>
     </>
   );
-};
+}
 
 export default Login;
