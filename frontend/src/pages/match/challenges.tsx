@@ -51,7 +51,7 @@ function ChallengesFormComponent() {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     if (!data.challenges) return;
-    console.log(data);
+
     navigate('/recommended');
   };
 

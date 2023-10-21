@@ -38,7 +38,6 @@ function BeliefsFormComponent() {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     if (!data.belief) return;
-    console.log(data);
     navigate('/match/religion');
   };
 

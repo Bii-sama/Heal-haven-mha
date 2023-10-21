@@ -25,7 +25,6 @@ function LanguageFormComponent() {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     if (!data.language) return;
-    console.log(data);
     navigate('/match/beliefs');
   };
 

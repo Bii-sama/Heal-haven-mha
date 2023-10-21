@@ -25,7 +25,6 @@ function GenderFormComponent() {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     if (!data.gender) return;
-    console.log(data);
     navigate('/match/language');
   };
 

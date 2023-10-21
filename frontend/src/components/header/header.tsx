@@ -79,13 +79,13 @@ function Index() {
         </div>
         <div className="hidden items-center gap-3 lg:flex">
           <Link
-            to="log-in"
+            to="/auth/login"
             className="flex items-center justify-center rounded-lg bg-white px-[1.125rem] py-[0.625rem] text-healHavenBrand600 shadow hover:bg-slate-300"
           >
             Log in
           </Link>
           <Link
-            to="sign-up"
+            to="/auth/register"
             className="flex items-center justify-center rounded-lg bg-healHavenBrand600 px-[1.125rem] py-[0.625rem] text-white shadow hover:bg-healHavenBrand900"
           >
             Sign up
