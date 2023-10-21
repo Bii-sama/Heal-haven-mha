@@ -4,6 +4,7 @@ import FindTherapist from '@/pages/find-therapist';
 import Landing from '@/pages/landing';
 import MatchLayout from '@/pages/match/layout';
 import Recommended from '@/pages/recommended';
+import Register from '@/pages/register';
 import Therapist from '@/pages/therapist';
 import Therapists from '@/pages/therapists';
 import { createBrowserRouter } from 'react-router-dom';
@@ -39,12 +40,10 @@ const router = createBrowserRouter([
   {
     path: 'match/:matchId',
     element: <MatchLayout />,
-    // children: [
-    //   {
-    //     path: 'gender',
-    //     element: <Gender />,
-    //   },
-    // ],
+  },
+  {
+    path: 'auth/:register',
+    element: <Register />,
   },
 ]);
 
