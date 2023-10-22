@@ -29,6 +29,10 @@ export default {
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
       },
+      boxShadow: {
+        small:
+          '0px 0px 0px 2px #F4EBFF, 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.10)',
+      },
     },
   },
   plugins: [],
