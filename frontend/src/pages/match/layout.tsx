@@ -2,11 +2,11 @@ import Logo from '@/assets/logo-header.svg';
 import { Mail } from 'react-feather';
 import { Link, useLocation } from 'react-router-dom';
 
-import genderImg from '@/assets/gender.png';
-import languageImg from '@/assets/language.png';
-import challengeImg from '@/assets/challenges.png';
-import beliefImg from '@/assets/beliefs.png';
-import religionImg from '@/assets/religion.png';
+import genderImg from '@/assets/match-gender.png';
+import languageImg from '@/assets/match-language.png';
+import challengeImg from '@/assets/match-challenges.png';
+import beliefImg from '@/assets/match-belief.png';
+import religionImg from '@/assets/match-religion.png';
 
 import BeliefsFormComponent from './beliefs';
 import GenderFormComponent from './gender';
