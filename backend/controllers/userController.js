@@ -4,7 +4,7 @@ const { signUpschema, options } = require('../utils/validation')
 const jwt = require('jsonwebtoken')
 
 const createToken = (_id) => {
-  return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' })
+  return jwt.sign({_id}, process.env.SECRET, { expiresIn: '1d' })
 }
 
 
@@ -45,6 +45,7 @@ const loginUser = async (req, res) =>{
         const user = await User.login( email, password)
 
         const token = createToken(user._id)
+        
 
         res.status(200).json({email, token})
     } catch (error) {
