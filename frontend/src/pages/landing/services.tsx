@@ -26,7 +26,7 @@ function Services() {
     <section>
       <div className="healHavenContainer">
         <div className="flex justify-center lg:px-8">
-          <ul className="shadow-small -mt-10 flex max-w-[533px] flex-col divide-y rounded-2xl bg-white px-4  py-8 lg:max-w-[1152px]  lg:flex-row lg:divide-x lg:divide-y-0">
+          <ul className="-mt-10 flex max-w-[533px] flex-col divide-y rounded-2xl bg-white px-4 py-8  shadow-small lg:max-w-[1152px]  lg:flex-row lg:divide-x lg:divide-y-0">
             {servicesData.map((service) => {
               return (
                 <li
