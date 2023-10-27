@@ -15,7 +15,7 @@ const signUpUser = async (req, res) =>{
 
 
 
-    const { fullName, email, userName, password, confirmPassword, userType } = req.body
+    const { fullName, email, password } = req.body
 
     const validateResult = signUpschema.validate(req.body, options);
 
@@ -24,7 +24,7 @@ const signUpUser = async (req, res) =>{
     }
 
     try {
-        const user = await User.signup( fullName, email, userName, password, confirmPassword ,userType )
+        const user = await User.signup( fullName, email, password )
 
         const token = createToken(user._id)
 
@@ -45,7 +45,7 @@ const loginUser = async (req, res) =>{
         const user = await User.login( email, password)
 
         const token = createToken(user._id)
-        
+
 
         res.status(200).json({email, token})
     } catch (error) {
