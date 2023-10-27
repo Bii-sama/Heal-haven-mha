@@ -15,29 +15,29 @@ const userSchema = new Schema({
         unique: true
     },
 
-    userName : {
-        type : String,
-        required: true,
-        unique: true
-    },
+    // userName : {
+    //     type : String,
+    //     required: true,
+    //     unique: true
+    // },
 
     password : {
         type : String,
         required: true
     },
 
-    confirmPassword : {
-        type : String,
-        required: true
-    },
+    // confirmPassword : {
+    //     type : String,
+    //     required: true
+    // },
 
-    userType : {
-        type : String,
-        required : true
-    }
+    // userType : {
+    //     type : String,
+    //     required : true
+    // }
 })
 
-userSchema.statics.signup = async function(fullName, email, userName, password, confirmPassword, userType){
+userSchema.statics.signup = async function(fullName, email, password){
 
     const emailExist = await this.findOne({ email })
 
@@ -48,7 +48,7 @@ userSchema.statics.signup = async function(fullName, email, userName, password, 
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
 
-    const user = await this.create({ fullName, email, userName, password: hash, confirmPassword: hash, userType })
+    const user = await this.create({ fullName, email, password: hash})
 
     return user
 }
