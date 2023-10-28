@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const therapistsRoutes = require('./routes/therapists')
 const userRoutes = require('./routes/users')
 const patientRoutes = require('./routes/patients')
+const matchingRoutes = require('./routes/matching')
 
 const app = express()
 
@@ -26,6 +27,7 @@ app.use((req, res, next)=>{
 app.use('/api/therapists',therapistsRoutes)
 app.use('/api/users',userRoutes)
 app.use('/api/patients', patientRoutes)
+app.use('/api/matching',matchingRoutes)
 
 //connect to DB
 mongoose.connect(process.env.MONGO_URI)
