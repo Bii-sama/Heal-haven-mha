@@ -60,8 +60,8 @@ function MatchLayout() {
   }
 
   return (
-    <section className="md:flex">
-      <div className="grid grid-rows-[auto_1fr_auto]   md:flex-1">
+    <section className="h-screen md:flex">
+      <div className="grid h-full grid-rows-[auto_1fr_auto]  md:flex-1">
         <header>
           <nav className="relative z-10 flex items-center justify-between px-4 py-5 md:py-6 md:pl-28  md:pr-8">
             <Link to="/" className="flex items-center gap-[0.375rem]">
@@ -72,7 +72,7 @@ function MatchLayout() {
             </Link>
           </nav>
         </header>
-        <div className="flex flex-col gap-6 px-4 pt-6 md:gap-[3.75rem] md:pl-28 md:pr-8 md:pt-[3.75rem] ">
+        <div className="flex flex-col gap-6 px-4 pt-6 md:gap-[3.75rem] md:pl-28 md:pr-8 md:pt-[2.75rem] ">
           <div className="inline-flex gap-4">
             {steps.map((step, i) => {
               const stepValue = i + 1;

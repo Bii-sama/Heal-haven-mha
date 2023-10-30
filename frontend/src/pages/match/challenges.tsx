@@ -29,25 +29,29 @@ type FormData = z.infer<typeof challengesSchema>;
 // type FormData = {
 //   challenges: string[];
 // };
-const options = [
-  'relationship',
-  'grief and loss',
-  'career',
-  'family dynamics',
-  'cultural challenges',
-  'personal growth',
-  'self-esteem and personal worth',
-  'navigating life as an immigrant',
-  'sexuality and gender identity',
-  'ageing and related challenges',
-  'substance use and moderation',
-  'divorce or separation',
-];
+
+const options: FormData = {
+  challenges: [
+    'relationship',
+    'grief and loss',
+    'career',
+    'family dynamics',
+    'cultural challenges',
+    'personal growth',
+    'self-esteem and personal worth',
+    'navigating life as an immigrant',
+    'sexuality and gender identity',
+    'ageing and related challenges',
+    'substance use and moderation',
+    'divorce or separation',
+  ],
+};
 
 function ChallengesFormComponent() {
   const {
     handleSubmit,
     register,
+    watch,
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: zodResolver(challengesSchema),
@@ -66,6 +70,8 @@ function ChallengesFormComponent() {
     navigate('/recommended');
   };
 
+  const selectedChallenges = watch('challenges');
+
   return (
     <>
       <h2 className="font-semibold text-healHavenBrand700">
@@ -75,48 +81,59 @@ function ChallengesFormComponent() {
         Are there specific life experiences or challenges you&apos;d like your
         therapist to have expertise in?
       </h3>
+      <p className="mt-2 text-sm text-healHavenGray800">
+        Please select 1-3 options
+      </p>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="mt-10 flex flex-col gap-10 "
       >
         {/* <label className="text-textHealHavenGray700 pr-4">Gender</label> */}
+        {errors.challenges ? (
+          <small className="mt-3 text-center text-red-500">
+            {errors.challenges.message}
+          </small>
+        ) : null}
+        {!isValid ? (
+          <small className="mt-3 text-center text-red-500">
+            Please select at least 1 and not more than 3 options
+          </small>
+        ) : null}
         <div className="max-h-[424px] overflow-y-auto pr-2 lg:pr-4">
           <div className="grid grid-cols-1 gap-4 ">
-            {options.map((option) => (
-              <div
+            {options.challenges.map((option) => (
+              <label
                 key={option}
-                className="relative flex w-full items-center justify-between rounded-md border border-solid border-healHavenGray300 p-4"
+                className={`${
+                  selectedChallenges.includes(option)
+                    ? 'bg-healHavenBrand50 text-healHavenBrand800'
+                    : 'text-textHealHavenGray700'
+                } relative flex w-full items-center justify-between rounded-md border border-solid border-healHavenGray300 p-4 hover:border-healHavenBrand300 hover:text-healHavenBrand800`}
+                htmlFor={option}
+                // className={`${
+                //   selectedChallenge === option
+                //     ? 'text-healHavenBrand800'
+                //     : 'text-textHealHavenGray700'
+                // } text-sm font-medium`}
               >
-                <label
-                  htmlFor={option}
-                  // className={`${
-                  //   selectedChallenge === option
-                  //     ? 'text-healHavenBrand800'
-                  //     : 'text-textHealHavenGray700'
-                  // } text-sm font-medium`}
-                >
-                  {option.charAt(0).toUpperCase() + option.slice(1)}
-                </label>
+                {option.charAt(0).toUpperCase() + option.slice(1)}
                 <input
                   type="checkbox"
                   className="peer opacity-0"
                   value={option}
+                  id={option}
                   // eslint-disable-next-line react/jsx-props-no-spreading
                   {...register('challenges')}
                 />
                 <div className="pointer-events-none absolute right-[13px] flex h-5 w-5 items-center justify-center rounded-full border border-solid border-healHavenBrand700 peer-checked:bg-healHavenBrand800 ">
                   <Check stroke="#fff" className="h-[0.875rem] w-[0.875rem]" />
                 </div>
-              </div>
+              </label>
             ))}
           </div>
         </div>
-        {errors.challenges ? (
-          <small className="mt-3 text-center text-red-500">
-            {errors.challenges.message}
-          </small>
-        ) : null}
+
         <div className="flex justify-between ">
           <button
             type="button"
