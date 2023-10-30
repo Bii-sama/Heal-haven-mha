@@ -44,31 +44,28 @@ function GenderFormComponent() {
         {/* <label className="text-textHealHavenGray700 pr-4">Gender</label> */}
         <div className="flex flex-col items-start gap-4">
           {options.map((option) => (
-            <div
+            <label
               key={option}
-              className="relative flex w-full items-center justify-between rounded-md border border-solid border-healHavenGray300 p-4"
+              htmlFor={option}
+              className={`${
+                selectedGender === option
+                  ? 'bg-healHavenBrand50 text-healHavenBrand800'
+                  : 'text-textHealHavenGray700'
+              } relative flex w-full items-center justify-between rounded-md border border-solid border-healHavenGray300 p-4 text-sm font-medium transition-all duration-300 hover:border-healHavenBrand300 hover:text-healHavenBrand800 `}
             >
-              <label
-                htmlFor={option}
-                className={`${
-                  selectedGender === option
-                    ? 'text-healHavenBrand800'
-                    : 'text-textHealHavenGray700'
-                } text-sm font-medium`}
-              >
-                {option.charAt(0).toUpperCase() + option.slice(1)}
-              </label>
+              {option.charAt(0).toUpperCase() + option.slice(1)}
               <input
                 type="radio"
                 className="peer opacity-0"
                 value={option}
+                id={option}
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 {...register('gender')}
               />
               <div className="pointer-events-none absolute right-[13px] flex h-5 w-5 items-center justify-center rounded-full border border-solid border-healHavenBrand700 peer-checked:bg-healHavenBrand800 ">
                 <Check stroke="#fff" className="h-[0.875rem] w-[0.875rem]" />
               </div>
-            </div>
+            </label>
           ))}
         </div>
         <div className="flex justify-between ">

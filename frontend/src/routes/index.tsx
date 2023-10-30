@@ -1,4 +1,5 @@
 import Layout from '@/components/layout';
+import AuthLanding from '@/pages/auth-landing';
 import ErrorPage from '@/pages/error';
 import FindTherapist from '@/pages/find-therapist';
 import Landing from '@/pages/landing';
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: 'recommended',
         element: <Recommended />,
+      },
+      {
+        path: 'home',
+        element: <AuthLanding />,
       },
     ],
   },

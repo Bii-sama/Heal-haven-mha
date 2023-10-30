@@ -104,7 +104,7 @@ function Testimonials() {
                   // eslint-disable-next-line react/no-array-index-key
                   key={`activeBtn${i}`}
                   type="button"
-                  className={`h-4 w-4 rounded-full transition-colors duration-300 ${
+                  className={`h-3 w-3 rounded-full transition-colors duration-300 ${
                     i === activeSlide ? 'bg-healHavenBrand700' : 'bg-white'
                   }`}
                   onClick={() => setActiveSlide(i)}
