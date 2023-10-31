@@ -26,6 +26,12 @@ const userSchema = new Schema({
         required: true
     },
 
+    confirmed : {
+        type : Boolean,
+        default: false
+
+    }
+
     // confirmPassword : {
     //     type : String,
     //     required: true
@@ -64,6 +70,11 @@ userSchema.statics.login =  async function(email, password){
        if(!userExist){
              throw Error('Incorrect email')
 }
+
+
+    if (!userExist.confirmed){
+        throw Error('Please confirm your email to Login')
+    }
 
      const match = await bcrypt.compare(password, userExist.password)
 
