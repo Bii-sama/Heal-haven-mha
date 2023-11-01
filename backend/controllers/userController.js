@@ -31,7 +31,7 @@ const signUpUser = async (req, res) =>{
 
         const token = createToken(user._id, user.email)
 
-        const url = `${process.env.BASE_URL}api/users/${user._id}/${token}`
+        const url = `${process.env.BASE_URL}api/users/${user._id}/verify/${token}`
 
         sendEmail(user.email, "Verify your email", `Kindly verify here ${url}`)
 
@@ -64,4 +64,34 @@ const loginUser = async (req, res) =>{
 }
 
 
-module.exports = { signUpUser, loginUser }
+const verificationLink = async (req, res) =>{
+
+    const { id } = req.params;
+    const token = req.params
+
+    try {
+        const user = await User.findOne({_id: id})
+
+        if(!user){
+            return res.status(400).json({message: "Invalid link"})
+        }
+
+        if(!token){
+            return res.status(400).json({message: "Invalid link"})
+        }
+
+        await User.findOneAndUpdate({_id:id},{ confirmed: true})
+        
+
+        res.status(200).json({message: "Email Verified Successfully"})
+        // await token.remove()
+
+        
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+
+}
+
+
+module.exports = { signUpUser, loginUser, verificationLink }
