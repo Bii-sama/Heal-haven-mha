@@ -15,11 +15,6 @@ const userSchema = new Schema({
         unique: true
     },
 
-    // userName : {
-    //     type : String,
-    //     required: true,
-    //     unique: true
-    // },
 
     password : {
         type : String,
@@ -32,15 +27,7 @@ const userSchema = new Schema({
 
     }
 
-    // confirmPassword : {
-    //     type : String,
-    //     required: true
-    // },
-
-    // userType : {
-    //     type : String,
-    //     required : true
-    // }
+    
 })
 
 userSchema.statics.signup = async function(fullName, email, password){
