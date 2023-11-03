@@ -11,7 +11,7 @@ const reqAuth = async (req, res, next) =>{
 
         if(!authorization){
             return res.status(401).json({
-                Error: "Kindly verify via email"
+                Error: "Kindly Login"
             })
         }
 
