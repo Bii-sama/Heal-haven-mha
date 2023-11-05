@@ -1,7 +1,7 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const User =  require('../models/userModel')
-const jwt_secret = process.env.SECRET;
+const secretKey = process.env.SECRET;
 
 
 const reqAuth = async (req, res, next) =>{
@@ -18,7 +18,7 @@ const reqAuth = async (req, res, next) =>{
         const token = authorization.split(' ')[1]
 
       try {
-        const {_id} = jwt.verify(token, jwt_secret)
+        const {_id} = jwt.verify(token, secretKey)
 
         req.user = await User.findOne({ _id }).select('_id')
 
