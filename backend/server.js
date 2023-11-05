@@ -6,12 +6,14 @@ const therapistsRoutes = require('./routes/therapists')
 const userRoutes = require('./routes/users')
 const patientRoutes = require('./routes/patients')
 const matchingRoutes = require('./routes/matching')
+const cors = require('cors')
 
 const app = express()
 
 
 //another middleware
 app.use(express.json())
+app.use(cors())
 
 const port = process.env.PORT ||4000
 
@@ -20,7 +22,7 @@ const port = process.env.PORT ||4000
 //middlewares
 app.use((req, res, next)=>{
   console.log(req.path, req.method)
-  res.setHeader('Access-Control-Allow-Origin','https://mha.vercel.app/');
+  // res.setHeader('Access-Control-Allow-Origin','https://mha.vercel.app/');
   next()
 })
 
