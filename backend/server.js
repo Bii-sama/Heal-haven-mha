@@ -20,7 +20,6 @@ const port = process.env.PORT ||4000
 //middlewares
 app.use((req, res, next)=>{
   console.log(req.path, req.method)
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
   next()
 })
 
