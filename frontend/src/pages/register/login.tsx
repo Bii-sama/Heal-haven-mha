@@ -1,6 +1,6 @@
 import Button from '@/components/button/button';
 import Google from '@/components/icons/google';
-import { Link } from 'react-router-dom';
+import { Form, Link } from 'react-router-dom';
 
 function Login() {
   return (
@@ -8,7 +8,11 @@ function Login() {
       <h1 className="text-[2.375rem] font-semibold text-healHavenGray900">
         Sign In
       </h1>
-      <form className="flex  w-full flex-col gap-5">
+      <Form
+        method="post"
+        action="/auth/login"
+        className="flex  w-full flex-col gap-5"
+      >
         <div className="text-healHavenGray700">
           <label htmlFor="email" className="font-medium">
             Email<sup>*</sup>
@@ -42,9 +46,9 @@ function Login() {
             icon={<Google />}
           />
         </div>
-      </form>
+      </Form>
       <div className="flex items-center justify-center gap-1">
-        <p className="text-sm">Dontapos;t have an account?</p>
+        <p className="text-sm">Don&apos;t have an account?</p>
         <Link className="text-sm text-healHavenBrand700" to="/auth/register">
           Create Account
         </Link>
