@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { links } from './header';
 
 type HeaderMenuProps = {
@@ -37,6 +37,22 @@ function HeaderMenu({ openMenu, setOpenMenu }: HeaderMenuProps) {
           </li>
         );
       })}
+      <li className="mt-6 flex justify-center">
+        <Link
+          to="/auth/login"
+          className="flex w-[190px] items-center justify-center rounded-lg bg-white px-[1.125rem] py-[0.625rem] text-healHavenBrand600 shadow hover:bg-slate-300"
+        >
+          Log in
+        </Link>
+      </li>
+      <li className="flex justify-center">
+        <Link
+          to="/auth/register"
+          className="flex w-[190px] items-center justify-center rounded-lg bg-healHavenBrand600 px-[1.125rem] py-[0.625rem] text-white shadow hover:bg-healHavenBrand900"
+        >
+          Sign up
+        </Link>
+      </li>
     </ul>
   );
 }

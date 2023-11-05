@@ -1,5 +1,6 @@
 import Layout from '@/components/layout';
 import AuthLanding from '@/pages/auth-landing';
+import Email from '@/pages/email/email';
 import ErrorPage from '@/pages/error';
 import FindTherapist from '@/pages/find-therapist';
 import Landing from '@/pages/landing';
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: 'home',
         element: <AuthLanding />,
+      },
+      {
+        path: 'verify',
+        element: <Email />,
       },
     ],
   },

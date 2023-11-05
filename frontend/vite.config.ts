@@ -10,4 +10,12 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://heal-haven.onrender.com',
+        changeOrigin: true,
+      },
+    },
+  },
 });

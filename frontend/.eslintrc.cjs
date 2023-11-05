@@ -81,6 +81,7 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'react/button-has-type': 0,
     ' react/jsx-props-no-spreading': 'off',
+    'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'import/no-cycle': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',

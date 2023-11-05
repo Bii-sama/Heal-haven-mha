@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 type ButtonProps = {
-  text: string;
+  text?: string;
   icon?: ReactNode;
   bgColor: 'brand' | 'white';
   type: 'submit' | 'button' | 'reset' | undefined;
