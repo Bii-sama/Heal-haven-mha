@@ -19,7 +19,7 @@ const reqAuth = async (req, res, next) =>{
         const token = authorization.split(' ')[1]
 
       try {
-        const {_id} = jwt.verify(token, secretKey, options)
+        const {_id} = jwt.verify(token, secretKey)
 
         req.user = await User.findOne({ _id }).select('_id')
 
