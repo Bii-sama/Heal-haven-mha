@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-    fullName : {
+    name : {
         type : String,
         required: true
     },
@@ -30,7 +30,7 @@ const userSchema = new Schema({
     
 })
 
-userSchema.statics.signup = async function(fullName, email, password){
+userSchema.statics.signup = async function(name, email, password){
 
     const emailExist = await this.findOne({ email })
 
@@ -41,7 +41,7 @@ userSchema.statics.signup = async function(fullName, email, password){
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
 
-    const user = await this.create({ fullName, email, password: hash})
+    const user = await this.create({ name, email, password: hash})
 
     return user
 }
