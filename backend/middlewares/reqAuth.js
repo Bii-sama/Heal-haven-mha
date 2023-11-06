@@ -1,7 +1,6 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const User =  require('../models/userModel');
-const { options } = require('joi');
 const secretKey = process.env.SECRET;
 
 
