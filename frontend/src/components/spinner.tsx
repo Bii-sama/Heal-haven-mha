@@ -8,7 +8,7 @@ function Spinner({ width = 'w-5', height = 'h-5' }: SpinnerProps) {
     <div role="status">
       <svg
         aria-hidden="true"
-        className={`${width} ${height} mr-2 animate-spin fill-healHavenBrand700 text-healHavenGray300 dark:text-healHavenGray500`}
+        className={`${width} ${height} mr-2 animate-spin fill-healHavenBrand50 text-healHavenGray500 dark:text-healHavenGray500`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
