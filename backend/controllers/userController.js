@@ -35,7 +35,7 @@ const signUpUser = async (req, res) =>{
 
         sendEmail(user.email, "Verify your email", `Kindly verify here ${url}`)
 
-        res.status(200).json({email, token})
+        res.status(200).json({token})
     } catch (error) {
         res.status(400).json({error: error.message})
     }
