@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import Logo from '@/assets/logo-header.svg';
+import { useAuth } from '@/hooks/useAuth';
 import HeaderMenu from './header-menu';
 import MenuButton from './menu-button';
 
@@ -31,6 +32,15 @@ export const links = [
 function Index() {
   const [openMenu, setOpenMenu] = useState(false);
   const { pathname } = useLocation();
+  const { token, setToken } = useAuth();
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    setToken(null);
+    localStorage.removeItem('healHavenToken');
+    navigate('/');
+  };
+
   if (pathname.includes('find-therapist')) {
     return (
       <header>
@@ -78,18 +88,29 @@ function Index() {
           </ul>
         </div>
         <div className="hidden items-center gap-3 lg:flex">
-          <Link
-            to="/auth/login"
-            className="flex items-center justify-center rounded-lg bg-white px-[1.125rem] py-[0.625rem] text-healHavenBrand600 shadow hover:bg-slate-300"
-          >
-            Log in
-          </Link>
-          <Link
-            to="/auth/register"
-            className="flex items-center justify-center rounded-lg bg-healHavenBrand600 px-[1.125rem] py-[0.625rem] text-white shadow hover:bg-healHavenBrand900"
-          >
-            Sign up
-          </Link>
+          {!token ? (
+            <>
+              <Link
+                to="/auth/login"
+                className="flex items-center justify-center rounded-lg bg-white px-[1.125rem] py-[0.625rem] text-healHavenBrand600 shadow hover:bg-slate-300"
+              >
+                Log in
+              </Link>
+              <Link
+                to="/auth/register"
+                className="flex items-center justify-center rounded-lg bg-healHavenBrand600 px-[1.125rem] py-[0.625rem] text-white shadow hover:bg-healHavenBrand900"
+              >
+                Sign up
+              </Link>{' '}
+            </>
+          ) : (
+            <button
+              onClick={logOut}
+              className="flex items-center justify-center rounded-lg bg-white px-[1.125rem] py-[0.625rem] text-healHavenBrand600 shadow hover:bg-slate-300"
+            >
+              Log Out
+            </button>
+          )}
         </div>
         <div className="relative z-10 block lg:hidden">
           <MenuButton openMenu={openMenu} setOpenMenu={setOpenMenu} />

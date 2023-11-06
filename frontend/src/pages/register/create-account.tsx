@@ -6,21 +6,28 @@ import Spinner from '@/components/spinner';
 import { cn } from '@/utils/cn';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link, redirect } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import z from 'zod';
 import { axiosInstance } from '@/utils/urls';
+import { useAuth } from '@/hooks/useAuth';
 
 const formSchema = z.object({
   name: z.string().min(1).max(255),
   email: z.string().email({ message: 'Please enter a valid email' }),
   password: z
     .string()
-    .min(6, { message: 'Password length must be at least 6 characters' }),
+    .regex(/.*[A-Z].*/, 'At least One uppercase character')
+    .regex(/.*[a-z].*/, 'At least One lowercase character')
+    .regex(/.*\d.*/, 'At least One number')
+    .regex(/.*[^a-zA-Z0-9\s].*/, 'At least a special character')
+    .min(8, { message: 'Password length must be at least 8 characters' }),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
 function CreateAccount() {
+  const { setToken } = useAuth();
   const {
     register,
     handleSubmit,
@@ -35,22 +42,26 @@ function CreateAccount() {
   });
   const [loading, setLoading] = useState(false);
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<FormData> = async (formData) => {
     if (loading) {
       return;
     }
     try {
       setLoading(true);
-      const res = await axiosInstance.post('/api/users/register', {
-        data,
-      });
-      console.log(res.data);
+      const res = await axiosInstance.post('/api/users/register', formData);
+      if (res.data.token) {
+        setToken(res.data.token);
+        setLoading(false);
+        toast.success('Account created successfully');
+        navigate('/verify');
+      }
+    } catch (err: unknown) {
+      toast.error('Email already in use');
+      console.log(err);
 
       setLoading(false);
-      redirect('/verify');
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
     }
   };
 
