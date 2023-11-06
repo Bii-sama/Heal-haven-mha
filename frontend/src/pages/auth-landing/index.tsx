@@ -15,7 +15,7 @@ function AuthLanding() {
             unique journey.
           </p>
           <Link
-            to="find-therapist"
+            to="/find-therapist"
             className="flex w-full max-w-sm items-center justify-center rounded-lg bg-healHavenBrand600 px-5 py-3 font-semibold text-white hover:bg-healHavenBrand900 lg:max-w-[190px]"
           >
             Find a therapist

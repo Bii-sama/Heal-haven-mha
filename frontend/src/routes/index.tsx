@@ -1,4 +1,5 @@
 import Layout from '@/components/layout';
+import ProtectedRoute from '@/components/protected-route';
 import AuthLanding from '@/pages/auth-landing';
 import Email from '@/pages/email/email';
 import ErrorPage from '@/pages/error';
@@ -38,8 +39,13 @@ const router = createBrowserRouter([
         element: <Recommended />,
       },
       {
-        path: 'home',
-        element: <AuthLanding />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: 'home',
+            element: <AuthLanding />,
+          },
+        ],
       },
       {
         path: 'verify',

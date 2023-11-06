@@ -79,6 +79,7 @@ module.exports = {
       { ignoreFunctionalComponents: true }, // Ignore functional components (TypeScript)
     ],
     'react/react-in-jsx-scope': 0,
+    'react/jsx-props-no-spreading': 0,
     'react/button-has-type': 0,
     ' react/jsx-props-no-spreading': 'off',
     'import/prefer-default-export': 0,
