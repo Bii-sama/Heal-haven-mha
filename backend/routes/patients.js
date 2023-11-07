@@ -7,12 +7,12 @@ const {
     deletePatient
 } = require('../controllers/patientController')
 
+
 const router = express.Router()
 
 const reqAuth = require('../middlewares/reqAuth')
 
 router.use(reqAuth)
-
 
 
 router.get('/', getPatients)

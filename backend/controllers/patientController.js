@@ -1,7 +1,6 @@
 const Patient = require('../models/patientsModel');
 const mongoose = require('mongoose');
 
-
 const getPatients =  async (req, res) =>{
     const patients = await Patient.find({}).sort({createdAt : -1});
 
@@ -34,19 +33,19 @@ const getAPatient = async (req, res) =>{
 
 const createPatient = async (req, res) => {
 
-    const {therapistGender, languages, religiousBeliefs, religion, experiences,  } = req.body;
-
+    const {gender, language, belief, religion, experiences,  } = req.body;
 
     try {
-        const patient = await Patient.create({ therapistGender, languages, religiousBeliefs, religion, experiences })
+        const patient = await Patient.create({ gender, language, belief, religion, experiences })
         res.status(200).json(patient)
+
+    
     } catch (error) {
         res.status(400).json({
             error: error.message
         })
     }
  
-
 }
 
 
