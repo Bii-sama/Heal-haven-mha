@@ -5,17 +5,17 @@ const Schema = mongoose.Schema
 const patientSchema = new Schema({
     
 
-    therapistGender : {
+    gender : {
         type : String,
         required: true
     },
 
-    languages : {
-        type : Array,
+    language : {
+        type : String,
         required : true
     },
 
-    religiousBeliefs : {
+    belief : {
         type : String,
         required: true
     },

@@ -22,7 +22,6 @@ const port = process.env.PORT ||4000
 //middlewares
 app.use((req, res, next)=>{
   console.log(req.path, req.method)
-  // res.setHeader('Access-Control-Allow-Origin','https://mha.vercel.app/');
   next()
 })
 
@@ -41,8 +40,4 @@ mongoose.connect(process.env.MONGO_URI)
 }).catch((error)=>{
   console.log(error)
 })
-
-// app.get('/', (req, res) => {
-//  res.json({mssg: "Welcome to MHA"})
-// })
 
