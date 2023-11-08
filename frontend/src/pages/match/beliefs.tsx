@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
 const beliefSchema = z.object({
-  belief: z.enum(['yes', 'somewhat', 'no']),
+  belief: z.enum(['Yes', 'Somewhat', 'No']),
 });
 
 export type Belief = z.infer<typeof beliefSchema>;
