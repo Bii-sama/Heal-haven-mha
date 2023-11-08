@@ -9,14 +9,14 @@ const religionSchema = z.object({
   religion: z.enum([
     'Budhism',
     'Hinduism',
-    'Chrisitianity',
+    'Christianity',
     'Islam',
     'Judaism',
   ]),
 });
 
 export type Religion = z.infer<typeof religionSchema>;
-const options = ['Budhism', 'Hinduism', 'Chrisitianity', 'Islam', 'Judaism'];
+const options = ['Budhism', 'Hinduism', 'Christianity', 'Islam', 'Judaism'];
 
 function ReligionFormComponent() {
   const { match, dispatch } = useMatches();
