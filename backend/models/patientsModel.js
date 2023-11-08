@@ -11,7 +11,7 @@ const patientSchema = new Schema({
     },
 
     language : {
-        type : String,
+        type : Array,
         required : true
     },
 
