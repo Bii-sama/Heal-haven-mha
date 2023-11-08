@@ -1,76 +1,123 @@
+/* eslint-disable no-underscore-dangle */
+import Spinner from '@/components/spinner';
+import { useAuth } from '@/hooks/useAuth';
+import { useMatches } from '@/hooks/useMatch';
+import { cn } from '@/utils/cn';
+import { axiosInstance } from '@/utils/urls';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { AxiosError } from 'axios';
+import { useState } from 'react';
 import { Check } from 'react-feather';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { z } from 'zod';
 
-const challengesSchema = z.object({
-  challenges: z
+const experiencesSchema = z.object({
+  experiences: z
     .enum([
-      'relationship',
-      'grief and loss',
-      'career',
-      'family dynamics',
-      'cultural challenges',
-      'personal growth',
-      'self-esteem and personal worth',
-      'navigating life as an immigrant',
-      'sexuality and gender identity',
-      'ageing and related challenges',
-      'substance use and moderation',
-      'divorce or separation',
+      'Relationship',
+      'Grief and loss',
+      'Career',
+      'Family dynamics',
+      'Cultural challenges',
+      'Personal growth',
+      'Self-esteem and personal worth',
+      'Navigating life as an immigrant',
+      'Sexuality and gender identity',
+      'Ageing and related challenges',
+      'Substance use and moderation',
+      'Divorce or separation',
     ])
     .array()
     .nonempty('Please select at least one field')
     .max(3, "You can't select more than 3 fields"),
 });
 
-type FormData = z.infer<typeof challengesSchema>;
-// type FormData = {
+export type Experiences = z.infer<typeof experiencesSchema>;
+// type Challenges = {
 //   challenges: string[];
 // };
 
-const options: FormData = {
-  challenges: [
-    'relationship',
-    'grief and loss',
-    'career',
-    'family dynamics',
-    'cultural challenges',
-    'personal growth',
-    'self-esteem and personal worth',
-    'navigating life as an immigrant',
-    'sexuality and gender identity',
-    'ageing and related challenges',
-    'substance use and moderation',
-    'divorce or separation',
+const options: Experiences = {
+  experiences: [
+    'Relationship',
+    'Grief and loss',
+    'Career',
+    'Family dynamics',
+    'Cultural challenges',
+    'Personal growth',
+    'Self-esteem and personal worth',
+    'Navigating life as an immigrant',
+    'Sexuality and gender identity',
+    'Ageing and related challenges',
+    'Substance use and moderation',
+    'Divorce or separation',
   ],
 };
 
 function ChallengesFormComponent() {
+  const { match, dispatch } = useMatches();
+  const { token } = useAuth();
   const {
     handleSubmit,
     register,
     watch,
     formState: { errors, isValid },
-  } = useForm<FormData>({
-    resolver: zodResolver(challengesSchema),
+  } = useForm<Experiences>({
+    resolver: zodResolver(experiencesSchema),
     defaultValues: {
-      challenges: [],
+      experiences: match.experiences ?? [],
     },
   });
 
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   // const selectedChallenge = watch('challenges');
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    if (data.challenges.length === 0) return;
+  const onSubmit: SubmitHandler<Experiences> = async (data) => {
+    if (data.experiences.length === 0) return;
+    dispatch({
+      type: 'update-experiences',
+      payload: {
+        experiences: data.experiences,
+      },
+    });
+    const serverMatch = {
+      ...match,
+      languages: [match.language],
+      experiences: data.experiences,
+    };
+    // console.log(serverMatch);
+    try {
+      setLoading(true);
+      const res = await axiosInstance.post(
+        '/api/patients/create',
+        serverMatch,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    navigate('/recommended');
+      console.log('==>', res.data);
+      setLoading(false);
+      if (res.data._id) {
+        navigate(`/recommended/${res.data._id}`);
+      }
+      // navigate('/recommended');
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        toast.error(err?.response?.data.error ?? 'Something went wrong');
+      }
+
+      setLoading(false);
+    }
   };
 
-  const selectedChallenges = watch('challenges');
+  const selectedChallenges = watch('experiences');
 
   return (
     <>
@@ -90,32 +137,25 @@ function ChallengesFormComponent() {
         className="mt-10 flex flex-col gap-10 "
       >
         {/* <label className="text-textHealHavenGray700 pr-4">Gender</label> */}
-        {errors.challenges ? (
+        {errors.experiences ? (
           <small className="mt-3 text-center text-red-500">
-            {errors.challenges.message}
+            {errors.experiences.message}
           </small>
         ) : null}
-        {!isValid ? (
-          <small className="mt-3 text-center text-red-500">
-            Please select at least 1 and not more than 3 options
-          </small>
-        ) : null}
+
         <div className="max-h-[424px] overflow-y-auto pr-2 lg:pr-4">
           <div className="grid grid-cols-1 gap-4 ">
-            {options.challenges.map((option) => (
+            {options.experiences.map((option) => (
               <label
                 key={option}
-                className={`${
-                  selectedChallenges.includes(option)
-                    ? 'bg-healHavenBrand50 text-healHavenBrand800'
-                    : 'text-textHealHavenGray700'
-                } relative flex w-full items-center justify-between rounded-md border border-solid border-healHavenGray300 p-4 hover:border-healHavenBrand300 hover:text-healHavenBrand800`}
                 htmlFor={option}
-                // className={`${
-                //   selectedChallenge === option
-                //     ? 'text-healHavenBrand800'
-                //     : 'text-textHealHavenGray700'
-                // } text-sm font-medium`}
+                className={cn(
+                  'relative flex w-full items-center justify-between rounded-md border border-solid border-healHavenGray300 p-4 text-healHavenGray700 hover:border-healHavenBrand300 hover:text-healHavenBrand800',
+                  {
+                    'bg-healHavenBrand50 text-healHavenBrand800':
+                      selectedChallenges.includes(option),
+                  }
+                )}
               >
                 {option.charAt(0).toUpperCase() + option.slice(1)}
                 <input
@@ -124,7 +164,7 @@ function ChallengesFormComponent() {
                   value={option}
                   id={option}
                   // eslint-disable-next-line react/jsx-props-no-spreading
-                  {...register('challenges')}
+                  {...register('experiences')}
                 />
                 <div className="pointer-events-none absolute right-[13px] flex h-5 w-5 items-center justify-center rounded-full border border-solid border-healHavenBrand700 peer-checked:bg-healHavenBrand800 ">
                   <Check stroke="#fff" className="h-[0.875rem] w-[0.875rem]" />
@@ -144,15 +184,10 @@ function ChallengesFormComponent() {
           </button>
           <button
             type="submit"
-            // className={`${
-            //   !isValid
-            //     ? 'bg-healHavenBrand200 hover:bg-healHavenBrand300'
-            //     : 'bg-healHavenBrand600 hover:bg-healHavenBrand900'
-            // }  rounded  px-4 py-2 text-white `}
             className="rounded  bg-healHavenBrand600 px-4 py-2 text-white hover:bg-healHavenBrand900 disabled:cursor-not-allowed disabled:bg-healHavenBrand200 disabled:hover:bg-healHavenBrand300"
             disabled={!isValid}
           >
-            Next
+            {loading ? <Spinner /> : 'Submit'}
           </button>
         </div>
       </form>

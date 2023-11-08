@@ -3,12 +3,13 @@ import ProtectedRoute from '@/components/protected-route';
 import AuthLanding from '@/pages/auth-landing';
 import Email from '@/pages/email/email';
 import ErrorPage from '@/pages/error';
+import ErrorUnauthorized from '@/pages/error-unauthorized';
 import FindTherapist from '@/pages/find-therapist';
 import Landing from '@/pages/landing';
 import MatchLayout from '@/pages/match/layout';
-import Recommended from '@/pages/recommended';
+import Recommended, { loader as recommendedLoader } from '@/pages/recommended';
 import Register from '@/pages/register';
-import Therapist from '@/pages/therapist';
+import Therapist, { loader as therapistLoader } from '@/pages/therapist';
 import Therapists from '@/pages/therapists';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -27,16 +28,30 @@ const router = createBrowserRouter([
         element: <Therapists />,
       },
       {
-        path: 'therapist/:therapistId',
-        element: <Therapist />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: 'therapist/:therapistId',
+            element: <Therapist />,
+            loader: therapistLoader,
+            errorElement: <ErrorUnauthorized />,
+          },
+        ],
       },
       {
         path: 'find-therapist',
         element: <FindTherapist />,
       },
       {
-        path: 'recommended',
-        element: <Recommended />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: 'recommended/:patientId',
+            element: <Recommended />,
+            errorElement: <ErrorUnauthorized />,
+            loader: recommendedLoader,
+          },
+        ],
       },
       {
         element: <ProtectedRoute />,
@@ -54,8 +69,13 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: 'match/:matchId',
-    element: <MatchLayout />,
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: 'match/:matchId',
+        element: <MatchLayout />,
+      },
+    ],
   },
   {
     path: 'auth/:register',

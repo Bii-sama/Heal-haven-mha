@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import z from 'zod';
 import { axiosInstance } from '@/utils/urls';
 import { useAuth } from '@/hooks/useAuth';
+import { AxiosError } from 'axios';
 
 const formSchema = z.object({
   name: z.string().min(1).max(255),
@@ -31,6 +32,7 @@ function CreateAccount() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -55,11 +57,13 @@ function CreateAccount() {
         setToken(res.data.token);
         setLoading(false);
         toast.success('Account created successfully');
+        reset();
         navigate('/verify');
       }
     } catch (err: unknown) {
-      toast.error('Email already in use');
-      console.log(err);
+      if (err instanceof AxiosError) {
+        toast.error(err?.response?.data.error ?? 'Something went wrong');
+      }
 
       setLoading(false);
     }
