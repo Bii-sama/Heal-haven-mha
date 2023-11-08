@@ -18,10 +18,14 @@ const getMatchingTherapists = async (req, res) => {
     
     const matchingTherapists = await Therapist.find({
       'experiences': { $in: patient.experiences },
-      'languages' : { $in: patient.language }
+      'religion' : { $in: patient.religion }
     });
+
+    console.log(matchingTherapists)
+    console.log(patient)
   
     return res.status(200).json(matchingTherapists);
+    
   }
   
 
