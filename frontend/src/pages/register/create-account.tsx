@@ -1,17 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState } from 'react';
 import Button from '@/components/button/button';
-import Google from '@/components/icons/google';
 import Spinner from '@/components/spinner';
+import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/utils/cn';
+import { axiosInstance } from '@/utils/urls';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { AxiosError } from 'axios';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import z from 'zod';
-import { axiosInstance } from '@/utils/urls';
-import { useAuth } from '@/hooks/useAuth';
-import { AxiosError } from 'axios';
 
 const formSchema = z.object({
   name: z.string().min(1).max(255),
@@ -147,12 +146,12 @@ function CreateAccount() {
             type="submit"
             icon={loading ? <Spinner /> : null}
           />
-          <Button
+          {/* <Button
             text="Sign Up With Google"
             bgColor="white"
             type="button"
             icon={<Google />}
-          />
+          /> */}
         </div>
       </form>
       <div className="flex items-center justify-center gap-1">

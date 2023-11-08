@@ -5,28 +5,28 @@ type InfoMainProps = {
   therapist: Therapist;
 };
 
+const resources = [
+  {
+    type: 'Book',
+    title: 'The Art of Happiness',
+    author: 'Dalai Lama',
+    content: 'A beautiful blend of Eastern wisdom and Western science.',
+  },
+  {
+    type: 'Podcast',
+    title: 'Code Switch',
+    author: 'NPR',
+    content: 'An insightful look into how race and identity shape our lives.',
+  },
+  {
+    type: 'Article',
+    title: 'Cultural Competence in Therapy: What it is and how to Find it',
+    author: '',
+    content:
+      'A deep dive into why understanding culture is crucial in therapeutic settings.',
+  },
+];
 function InfoMain({ therapist }: InfoMainProps) {
-  const resources = [
-    {
-      type: 'Book',
-      title: 'The Art of Happiness',
-      author: 'Dalai Lama',
-      content: 'A beautiful blend of Eastern wisdom and Western science.',
-    },
-    {
-      type: 'Podcast',
-      title: 'Code Switch',
-      author: 'NPR',
-      content: 'An insightful look into how race and identity shape our lives.',
-    },
-    {
-      type: 'Article',
-      title: 'Cultural Competence in Therapy: What it is and how to Find it',
-      author: '',
-      content:
-        'A deep dive into why understanding culture is crucial in therapeutic settings.',
-    },
-  ];
   return (
     <>
       <div className="flex h-fit flex-col gap-5 ">
