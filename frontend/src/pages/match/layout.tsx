@@ -1,6 +1,6 @@
 import Logo from '@/assets/logo-header.svg';
 import { Mail } from 'react-feather';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigation } from 'react-router-dom';
 
 import genderImg from '@/assets/match-gender.png';
 import languageImg from '@/assets/match-language.png';
@@ -8,6 +8,7 @@ import challengeImg from '@/assets/match-challenges.png';
 import beliefImg from '@/assets/match-belief.png';
 import religionImg from '@/assets/match-religion.png';
 
+import { cn } from '@/utils/cn';
 import BeliefsFormComponent from './beliefs';
 import GenderFormComponent from './gender';
 import ReligionFormComponent from './religion';
@@ -18,6 +19,7 @@ const steps = ['gender', 'language', 'beliefs', 'religion', 'challenges'];
 
 function MatchLayout() {
   const { pathname } = useLocation();
+  const navigation = useNavigation();
 
   let renderImg: string = genderImg;
 
@@ -60,7 +62,11 @@ function MatchLayout() {
   }
 
   return (
-    <section className="h-screen md:flex">
+    <section
+      className={cn('md:flex', {
+        'opacity-50': navigation.state === 'loading',
+      })}
+    >
       <div className="grid h-full grid-rows-[auto_1fr_auto]  md:flex-1">
         <header>
           <nav className="relative z-10 flex items-center justify-between px-4 py-5 md:py-6 md:pl-28  md:pr-8">

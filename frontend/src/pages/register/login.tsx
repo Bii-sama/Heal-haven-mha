@@ -35,7 +35,6 @@ function Login() {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<LoginData> = async (loginData) => {
-    console.log(loginData);
     if (loading) {
       return;
     }

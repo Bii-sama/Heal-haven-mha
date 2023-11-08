@@ -1,3 +1,4 @@
+import { useMatches } from '@/hooks/useMatch';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Check } from 'react-feather';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -5,17 +6,18 @@ import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
 const languageSchema = z.object({
-  language: z.enum(['english', 'spanish', 'french', 'german', 'mandarin']),
+  language: z.enum(['English', 'Spanish', 'French', 'German', 'Mandarin']),
 });
 
-type FormData = z.infer<typeof languageSchema>;
-const options = ['english', 'spanish', 'french', 'german', 'mandarin'];
+export type Language = z.infer<typeof languageSchema>;
+const options = ['English', 'Spanish', 'French', 'German', 'Mandarin'];
 
 function LanguageFormComponent() {
-  const { handleSubmit, register, watch } = useForm<FormData>({
+  const { match, dispatch } = useMatches();
+  const { handleSubmit, register, watch } = useForm<Language>({
     resolver: zodResolver(languageSchema),
     defaultValues: {
-      language: undefined,
+      language: match.language,
     },
   });
 
@@ -23,8 +25,14 @@ function LanguageFormComponent() {
 
   const selectedLanguage = watch('language');
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<Language> = (data) => {
     if (!data.language) return;
+    dispatch({
+      type: 'update-language',
+      payload: {
+        language: data.language,
+      },
+    });
     navigate('/match/beliefs');
   };
 

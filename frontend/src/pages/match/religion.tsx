@@ -1,3 +1,4 @@
+import { useMatches } from '@/hooks/useMatch';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Check } from 'react-feather';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -14,14 +15,15 @@ const religionSchema = z.object({
   ]),
 });
 
-type FormData = z.infer<typeof religionSchema>;
+export type Religion = z.infer<typeof religionSchema>;
 const options = ['budhism', 'hinduism', 'chrisitianity', 'islam', 'judaism'];
 
 function ReligionFormComponent() {
-  const { handleSubmit, register, watch } = useForm<FormData>({
+  const { match, dispatch } = useMatches();
+  const { handleSubmit, register, watch } = useForm<Religion>({
     resolver: zodResolver(religionSchema),
     defaultValues: {
-      religion: undefined,
+      religion: match.religion,
     },
   });
 
@@ -29,8 +31,14 @@ function ReligionFormComponent() {
 
   const selectedReligion = watch('religion');
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<Religion> = (data) => {
     if (!data.religion) return;
+    dispatch({
+      type: 'update-religion',
+      payload: {
+        religion: data.religion,
+      },
+    });
     navigate('/match/challenges');
   };
 

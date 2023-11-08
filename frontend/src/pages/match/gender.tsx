@@ -1,3 +1,4 @@
+import { useMatches } from '@/hooks/useMatch';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Check } from 'react-feather';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -8,14 +9,15 @@ const genderSchema = z.object({
   gender: z.enum(['male', 'female', 'non-binary', 'no-preference']),
 });
 
-type FormData = z.infer<typeof genderSchema>;
+export type Gender = z.infer<typeof genderSchema>;
 const options = ['male', 'female', 'non-binary', 'no-preference'];
 
 function GenderFormComponent() {
-  const { handleSubmit, register, watch } = useForm<FormData>({
+  const { match, dispatch } = useMatches();
+  const { handleSubmit, register, watch } = useForm<Gender>({
     resolver: zodResolver(genderSchema),
     defaultValues: {
-      gender: undefined,
+      gender: match.gender,
     },
   });
 
@@ -23,8 +25,14 @@ function GenderFormComponent() {
 
   const selectedGender = watch('gender');
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<Gender> = (data) => {
     if (!data.gender) return;
+    dispatch({
+      type: 'update-gender',
+      payload: {
+        gender: data.gender,
+      },
+    });
     navigate('/match/language');
   };
 

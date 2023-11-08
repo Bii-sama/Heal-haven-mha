@@ -1,3 +1,4 @@
+import { useMatches } from '@/hooks/useMatch';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Check } from 'react-feather';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -8,7 +9,7 @@ const beliefSchema = z.object({
   belief: z.enum(['yes', 'somewhat', 'no']),
 });
 
-type FormData = z.infer<typeof beliefSchema>;
+export type Belief = z.infer<typeof beliefSchema>;
 const options = [
   {
     belief: 'yes',
@@ -25,10 +26,11 @@ const options = [
 ];
 
 function BeliefsFormComponent() {
-  const { handleSubmit, register, watch } = useForm<FormData>({
+  const { match, dispatch } = useMatches();
+  const { handleSubmit, register, watch } = useForm<Belief>({
     resolver: zodResolver(beliefSchema),
     defaultValues: {
-      belief: undefined,
+      belief: match.belief,
     },
   });
 
@@ -36,8 +38,14 @@ function BeliefsFormComponent() {
 
   const selectedBelief = watch('belief');
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<Belief> = (data) => {
     if (!data.belief) return;
+    dispatch({
+      type: 'update-belief',
+      payload: {
+        belief: data.belief,
+      },
+    });
     navigate('/match/religion');
   };
 
