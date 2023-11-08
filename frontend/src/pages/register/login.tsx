@@ -1,15 +1,14 @@
-import { useState } from 'react';
 import Button from '@/components/button/button';
-import Google from '@/components/icons/google';
-import { Link, useNavigate } from 'react-router-dom';
-import z from 'zod';
-import { axiosInstance } from '@/utils/urls';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'react-toastify';
 import Spinner from '@/components/spinner';
 import { useAuth } from '@/hooks/useAuth';
+import { axiosInstance } from '@/utils/urls';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { AxiosError } from 'axios';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import z from 'zod';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email'),
@@ -106,12 +105,12 @@ function Login() {
             icon={loading ? <Spinner /> : null}
             type="submit"
           />
-          <Button
+          {/* <Button
             text="Sign In With Google"
             bgColor="white"
             type="button"
             icon={<Google />}
-          />
+          /> */}
         </div>
       </form>
       <div className="flex items-center justify-center gap-1">

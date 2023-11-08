@@ -19,7 +19,7 @@ export const loader = async ({
         },
       }
     );
-    console.log('==> serverT', res.data);
+    // console.log('==> serverT', res.data);
     return { therapist: res.data };
   }
 
