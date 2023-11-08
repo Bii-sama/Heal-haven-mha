@@ -7,16 +7,22 @@ import { z } from 'zod';
 
 const religionSchema = z.object({
   religion: z.enum([
-    'Budhism',
-    'Hinduism',
-    'Christianity',
-    'Islam',
-    'Judaism',
+    'Buddhist',
+    'Hinduist',
+    'Christian',
+    'Muslim',
+    'Jewish',
   ]),
 });
 
 export type Religion = z.infer<typeof religionSchema>;
-const options = ['Budhism', 'Hinduism', 'Christianity', 'Islam', 'Judaism'];
+const options = [
+    'Buddhist',
+    'Hinduist',
+    'Christian',
+    'Muslim',
+    'Jewish',
+  ];
 
 function ReligionFormComponent() {
   const { match, dispatch } = useMatches();
