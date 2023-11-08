@@ -12,15 +12,15 @@ const beliefSchema = z.object({
 export type Belief = z.infer<typeof beliefSchema>;
 const options = [
   {
-    belief: 'yes',
+    belief: 'Yes',
     text: "Yes,it's important to me",
   },
   {
-    belief: 'somewhat',
+    belief: 'Somewhat',
     text: "it's somewhat important to me",
   },
   {
-    belief: 'no',
+    belief: 'No',
     text: "No,it's not a priority for me",
   },
 ];
