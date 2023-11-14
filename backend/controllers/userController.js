@@ -4,6 +4,7 @@ const { signUpschema, options } = require('../utils/validation')
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
 const sendEmail = require('./sendEmail')
+const bcrypt = require('bcrypt')
 
 const createToken = (_id, email) => {
   const verificationToken = crypto.randomBytes(32).toString('hex')
@@ -84,7 +85,7 @@ const verificationLink = async (req, res) =>{
         
 
         res.status(200).json({message: "Email Verified Successfully"})
-        // await token.remove()
+        
 
         
     } catch (error) {
@@ -94,4 +95,74 @@ const verificationLink = async (req, res) =>{
 }
 
 
-module.exports = { signUpUser, loginUser, verificationLink }
+
+const forgotPasswordLink = async (req, res) =>{
+
+    const { email } = req.params;
+
+    try {
+        const user = await User.findOne({ email: email })
+
+        const token = createToken(user._id)
+    
+        if(!user){
+            return res.status(400).json({message: "Invalid link"})
+        }
+    
+        if(!token){
+            return res.status(400).json({message: "Invalid link"})
+        }
+    
+        const url = `${process.env.BASE_URL}api/users/${user._id}/reset/${token}`
+    
+        sendEmail(user.email, "Reset you password", `Click ${url} to reset password`)
+
+    
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+   
+}
+
+
+
+const resetPassword = async (req, res)=>{
+
+    const { id } = req.params;
+
+    const token = req.params;
+
+     const { password } = req.body
+
+     try {
+
+        if(!user){
+            return res.status(400).json({message: "Invalid link"})
+        }
+    
+        if(!token){
+            return res.status(400).json({message: "Invalid link"})
+        }
+        
+        const salt = await bcrypt.genSalt(10)
+     const hash = await bcrypt.hash(password, salt)
+
+    const user = await User.findOneAndUpdate({_id: id}, {password: hash}, { new: true })
+
+    const updatedUser = {
+        _id: user._id,
+        email: user.email,
+        name: user.name
+    }
+
+    res.status(200).json(updatedUser)
+     } catch (error) {
+        res.status(500).json({error: error.message})
+     }
+
+     
+
+
+}
+
+module.exports = { signUpUser, loginUser, verificationLink, resetPassword, forgotPasswordLink }
