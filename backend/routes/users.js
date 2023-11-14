@@ -8,7 +8,7 @@ router.post('/register', signUpUser)
 router.post('/login', loginUser)
 router.get('/:id/verify/:token', verificationLink)
 router.get('/:email/reset', forgotPasswordLink)
-router.patch('/resetpassword/:id/:token', resetPassword)
+router.patch('/resetpassword', resetPassword)
 
 
 
