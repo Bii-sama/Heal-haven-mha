@@ -6,23 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
 const religionSchema = z.object({
-  religion: z.enum([
-    'Buddhist',
-    'Hinduist',
-    'Christian',
-    'Muslim',
-    'Jewish',
-  ]),
+  religion: z.enum(['Buddhist', 'Hinduist', 'Christian', 'Muslim', 'Jewish']),
 });
 
 export type Religion = z.infer<typeof religionSchema>;
-const options = [
-    'Buddhist',
-    'Hinduist',
-    'Christian',
-    'Muslim',
-    'Jewish',
-  ];
+const options = ['Buddhist', 'Hinduist', 'Christian', 'Muslim', 'Jewish'];
 
 function ReligionFormComponent() {
   const { match, dispatch } = useMatches();
