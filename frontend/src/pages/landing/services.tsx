@@ -30,7 +30,7 @@ function Services() {
     offset: ['0 1', '1.33 1'],
   });
 
-  const pathProgress = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const pathProgress = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
   const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.75, 1]);
   return (
     <section ref={ref}>
@@ -58,6 +58,7 @@ function Services() {
                       >
                         <motion.circle
                           pathLength={pathProgress}
+                          transition={{ duration: 0.25 }}
                           cx="12"
                           cy="12"
                           r="10"

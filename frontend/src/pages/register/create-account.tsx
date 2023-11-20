@@ -57,7 +57,7 @@ function CreateAccount() {
         setLoading(false);
         toast.success('Account created successfully');
         reset();
-        navigate('/verify');
+        navigate('/verifyEmail');
       }
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
