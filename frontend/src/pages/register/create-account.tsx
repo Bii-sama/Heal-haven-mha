@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import Button from '@/components/button/button';
 import Spinner from '@/components/spinner';
 import { useAuth } from '@/hooks/useAuth';

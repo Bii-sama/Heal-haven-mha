@@ -1,11 +1,7 @@
-import { axiosInstance } from '@/utils/urls';
-import { useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-
 function VerifiedEmail() {
-  const location = useLocation();
-  const params = useParams();
-  console.log(location, params);
+  //   const location = useLocation();
+  //   const params = useParams();
+
   // useEffect(() => {
   //     const verifyEmail = async () => {
   //         const id = "sjjs"
