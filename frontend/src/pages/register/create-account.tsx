@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import Button from '@/components/button/button';
 import Spinner from '@/components/spinner';
 import { useAuth } from '@/hooks/useAuth';
@@ -57,7 +56,7 @@ function CreateAccount() {
         setLoading(false);
         toast.success('Account created successfully');
         reset();
-        navigate('/verify');
+        navigate('/verifyEmail');
       }
     } catch (err: unknown) {
       if (err instanceof AxiosError) {

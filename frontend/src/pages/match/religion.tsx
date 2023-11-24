@@ -6,23 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
 const religionSchema = z.object({
-  religion: z.enum([
-    'Buddhist',
-    'Hinduist',
-    'Christian',
-    'Muslim',
-    'Jewish',
-  ]),
+  religion: z.enum(['Buddhist', 'Hinduist', 'Christian', 'Muslim', 'Jewish']),
 });
 
 export type Religion = z.infer<typeof religionSchema>;
-const options = [
-    'Buddhist',
-    'Hinduist',
-    'Christian',
-    'Muslim',
-    'Jewish',
-  ];
+const options = ['Buddhist', 'Hinduist', 'Christian', 'Muslim', 'Jewish'];
 
 function ReligionFormComponent() {
   const { match, dispatch } = useMatches();
@@ -79,7 +67,6 @@ function ReligionFormComponent() {
                 className="peer opacity-0"
                 value={option}
                 id={option}
-                // eslint-disable-next-line react/jsx-props-no-spreading
                 {...register('religion')}
               />
               <div className="pointer-events-none absolute right-[13px] flex h-5 w-5 items-center justify-center rounded-full border border-solid border-healHavenBrand700 peer-checked:bg-healHavenBrand800 ">
