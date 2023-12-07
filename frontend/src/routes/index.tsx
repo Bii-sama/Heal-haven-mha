@@ -2,6 +2,7 @@ import Layout from '@/components/layout';
 import ProtectedRoute from '@/components/protected-route';
 import AuthLanding from '@/pages/auth-landing';
 import Email from '@/pages/email/email';
+import VerifiedEmail from '@/pages/email/verified-email';
 import ErrorPage from '@/pages/error';
 import ErrorUnauthorized from '@/pages/error-unauthorized';
 import FindTherapist from '@/pages/find-therapist';
@@ -62,10 +63,6 @@ const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: 'verify',
-        element: <Email />,
-      },
     ],
   },
   {
@@ -81,6 +78,16 @@ const router = createBrowserRouter([
     path: 'auth/:register',
     element: <Register />,
   },
+  {
+    path: 'verifyEmail',
+    element: <Email />,
+  },
+  {
+    path: 'verify/:userID/:token',
+    element: <VerifiedEmail />,
+  },
 ]);
+
+// localhost:5173/verify/63er53re5353/eydhcghyfcdygoygfosggsgsgsgsgygfoyfgo
 
 export default router;

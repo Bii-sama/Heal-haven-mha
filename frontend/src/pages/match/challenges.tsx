@@ -163,7 +163,6 @@ function ChallengesFormComponent() {
                   className="peer opacity-0"
                   value={option}
                   id={option}
-                  // eslint-disable-next-line react/jsx-props-no-spreading
                   {...register('experiences')}
                 />
                 <div className="pointer-events-none absolute right-[13px] flex h-5 w-5 items-center justify-center rounded-full border border-solid border-healHavenBrand700 peer-checked:bg-healHavenBrand800 ">

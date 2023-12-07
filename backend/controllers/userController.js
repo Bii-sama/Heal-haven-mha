@@ -32,7 +32,7 @@ const signUpUser = async (req, res) =>{
 
         const token = createToken(user._id, user.email)
 
-        const url = `${process.env.BASE_URL}api/users/${user._id}/verify/${token}`
+        const url = `${process.env.BASE_URL}/api/users/${user._id}/verify/${token}`
 
         sendEmail(user.email, "Verify your email", `Kindly verify here ${url}`)
 

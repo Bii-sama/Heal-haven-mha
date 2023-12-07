@@ -25,6 +25,7 @@ app.use((req, res, next)=>{
   next()
 })
 
+
 //routes
 app.use('/api/therapists',therapistsRoutes)
 app.use('/api/users',userRoutes)

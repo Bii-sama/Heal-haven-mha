@@ -1,3 +1,5 @@
+import { useAuth } from '@/hooks/useAuth';
+import { Navigate } from 'react-router-dom';
 import Hero from './hero';
 import HowItWorks from './how-it-works';
 import PerfectMatch from './perfect-match';
@@ -6,6 +8,10 @@ import Testimonials from './testimonials';
 import WhyHealHaven from './why-heal-haven';
 
 function Landing() {
+  const { token } = useAuth();
+  if (token) {
+    return <Navigate to="/home" />;
+  }
   return (
     <>
       <Hero />
