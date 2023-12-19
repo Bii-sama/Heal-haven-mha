@@ -7,7 +7,7 @@ const sendEmail = require('./sendEmail')
 const bcrypt = require('bcrypt')
 
 const createToken = (_id, email) => {
-  const verificationToken = crypto.randomBytes(32).toString('hex')
+  const verificationToken = crypto.randomBytes(16).toString('hex')
   return jwt.sign({ _id, email, verificationToken }, process.env.SECRET, { expiresIn: '3d' })
 }
 
@@ -32,7 +32,7 @@ const signUpUser = async (req, res) =>{
 
         const token = createToken(user._id, user.email)
 
-        const url = `${process.env.BASE_URL}/api/users/${user._id}/verify/${token}`
+        const url = `${process.env.BASE_URL}/verify/${user._id}`
 
         sendEmail(user.email, "Verify your email", `Kindly verify here ${url}`)
 
@@ -68,7 +68,7 @@ const loginUser = async (req, res) =>{
 const verificationLink = async (req, res) =>{
 
     const { id } = req.params;
-    const token = req.params
+    // const token = req.params
 
     try {
         const user = await User.findOne({_id: id})
@@ -77,9 +77,9 @@ const verificationLink = async (req, res) =>{
             return res.status(400).json({message: "Invalid link"})
         }
 
-        if(!token){
-            return res.status(400).json({message: "Invalid link"})
-        }
+        // if(!token){
+        //     return res.status(400).json({message: "Invalid link"})
+        // }
 
         await User.findOneAndUpdate({_id:id},{ confirmed: true})
         

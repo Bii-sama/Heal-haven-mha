@@ -27,8 +27,8 @@ function Register() {
   const getPath = pathname.split('/')[2];
 
   return (
-    <section className="lg:flex">
-      <div className="grid h-screen grid-rows-[auto_1fr_auto] lg:flex-1">
+    <section className="h-[724px] lg:flex">
+      <div className="grid h-full grid-rows-[auto_1fr_auto] lg:flex-1">
         <header>
           <nav className="relative z-10 flex items-center justify-between px-4 py-5 lg:py-6 lg:pl-28  lg:pr-8">
             <Link to="/" className="flex items-center gap-[0.375rem]">
@@ -39,11 +39,11 @@ function Register() {
             </Link>
           </nav>
         </header>
-        <div className="mx-auto flex w-full max-w-xl flex-col  gap-6 px-4 py-6 lg:mx-0 lg:gap-8 lg:py-[7.75rem] lg:pl-40 lg:pr-8 ">
+        <div className="mx-auto flex w-full max-w-xl flex-col  gap-6 px-4 py-6 lg:mx-0 lg:gap-8 lg:pl-40 lg:pr-8 lg:pt-[7.75rem] ">
           {renderFormContent(getPath)}
         </div>
         <footer>
-          <div className="flex items-center  justify-between px-4  py-12 pb-7 lg:pb-12 lg:pl-28 lg:pr-8">
+          <div className="flex items-center  justify-between px-4  py-3 lg:pl-28 lg:pr-8">
             <p className="text-sm">
               &copy; {new Date().getFullYear()} Heal Haven.
             </p>
@@ -54,7 +54,7 @@ function Register() {
           </div>
         </footer>
       </div>
-      <div className="hidden h-screen flex-col items-center justify-center gap-8 bg-healHavenGray50 lg:flex lg:flex-1 lg:pt-[18.5rem]">
+      <div className="hidden h-full flex-col items-center justify-center gap-8 bg-healHavenGray50 lg:flex lg:flex-1 lg:pt-[18.5rem]">
         <blockquote className="max-w-lg text-center text-3xl text-healHavenGray700">
           Heal Haven helped me find a therapist who truly understands my
           cultural background. It&apos;s been a game-changer for my mental
