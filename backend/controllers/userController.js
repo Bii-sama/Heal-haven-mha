@@ -68,7 +68,7 @@ const loginUser = async (req, res) =>{
 const verificationLink = async (req, res) =>{
 
     const { id } = req.params;
-    const token = req.params
+    // const token = req.params
 
     try {
         const user = await User.findOne({_id: id})
@@ -77,9 +77,9 @@ const verificationLink = async (req, res) =>{
             return res.status(400).json({message: "Invalid link"})
         }
 
-        if(!token){
-            return res.status(400).json({message: "Invalid link"})
-        }
+        // if(!token){
+        //     return res.status(400).json({message: "Invalid link"})
+        // }
 
         await User.findOneAndUpdate({_id:id},{ confirmed: true})
         
