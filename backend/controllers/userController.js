@@ -7,7 +7,7 @@ const sendEmail = require('./sendEmail')
 const bcrypt = require('bcrypt')
 
 const createToken = (_id, email) => {
-  const verificationToken = crypto.randomBytes(32).toString('hex')
+  const verificationToken = crypto.randomBytes(16).toString('hex')
   return jwt.sign({ _id, email, verificationToken }, process.env.SECRET, { expiresIn: '3d' })
 }
 
