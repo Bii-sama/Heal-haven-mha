@@ -9,7 +9,7 @@ function VerifiedEmail() {
   useEffect(() => {
     const verifyEmail = async () => {
       const { data } = await axiosInstance.get(
-        `/api/users/${params.userID}/verify`
+        `/api/users/verify/${params.userID}`
       );
       console.log(data);
       if (data) {
